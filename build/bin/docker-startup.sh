@@ -104,6 +104,10 @@ JAVA_OPT="${JAVA_OPT} --spring.config.name=${CUSTOM_SEARCH_NAMES}"
 JAVA_OPT="${JAVA_OPT} --logging.config=${BASE_DIR}/conf/nacos-logback.xml"
 JAVA_OPT="${JAVA_OPT} --server.max-http-header-size=524288"
 
+# Start and application logs to stdout
+ln -sf /dev/stdout /home/nacos/logs/start.out
+ln -sf /dev/stdout /home/nacos/logs/nacos.log
+
 echo "nacos is starting,you can check the ${BASE_DIR}/logs/start.out"
 echo "$JAVA ${JAVA_OPT}" > ${BASE_DIR}/logs/start.out 2>&1 &
 nohup $JAVA ${JAVA_OPT} > ${BASE_DIR}/logs/start.out 2>&1 < /dev/null
